@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import router from 'vue-router'
+import router from "vue-router";
 export default {
     data() {
         return {
@@ -32,7 +32,7 @@ export default {
                         message: "恭喜你，登陆成功",
                         type: "success"
                     });
-                    
+                    this.$router.push("/layout");
                 }
             });
         }
