@@ -4,7 +4,7 @@ import { Notification } from 'element-ui';
 const baseUrl = "/api/admin";
 const instance = axios.create({
   baseURL: baseUrl,
-  timeout: 1000
+  timeout: 2000
 });
 
 const fetch = {

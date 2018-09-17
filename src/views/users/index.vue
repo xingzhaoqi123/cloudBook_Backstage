@@ -4,7 +4,7 @@
             <el-breadcrumb-item :to="{ path: 'admin' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>用户信息</el-breadcrumb-item>
         </el-breadcrumb>
-        <el-table :data="tableData" style="width: 100%">
+        <el-table :data="tableData" style="width: 100%;">
             <el-table-column prop="nickname" label="姓名" width="180">
             </el-table-column>
             <el-table-column prop="desc" label="个性签名" width="180">
@@ -23,6 +23,8 @@
                 </template>
             </el-table-column>
         </el-table>
+        <el-pagination class="Pagination" background @current-change='changePage' :page-size='this.size' layout="prev, pager, next" :total="this.count">
+        </el-pagination>
     </div>
 </template>
 
@@ -30,17 +32,28 @@
 export default {
     data() {
         return {
-            tableData: []
+            tableData: [],
+            count: 0,
+            page: 1,
+            size: 5
         };
     },
     methods: {
+        changePage(page) {
+            this.page = page;
+            this.getData();
+            console.log(this.count);
+        },
         getData() {
-            this.$axios.get("/user").then(res => {
-                console.log(res.data);
-                if (res.code == 200) {
-                    this.tableData = res.data;
-                }
-            });
+            this.$axios
+                .get("/user", { pn: this.page, size: this.size })
+                .then(res => {
+                    console.log(res.data);
+                    if (res.code == 200) {
+                        this.count = res.count;
+                        this.tableData = res.data;
+                    }
+                });
         },
         delet(id) {
             console.log(id);
@@ -82,7 +95,11 @@ export default {
 
 <style>
 .avatar {
-    width: 130px;
-    height: 150px;
+    width: 90px;
+    height: 107px;
+}
+.Pagination {
+    width: 400px;
+    margin: 30px auto;
 }
 </style>
