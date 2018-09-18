@@ -28,10 +28,31 @@
                             <el-menu-item index="adduser">添加用户</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
-                    <el-menu-item index="2">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">导航二</span>
-                    </el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-menu"></i>
+                            <span>图书管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <!-- <template slot="title">用户管理</template> -->
+                            <el-menu-item index="/">登录页</el-menu-item>
+                            <el-menu-item index="admin" >首页</el-menu-item>
+                            <el-menu-item index="users">用户管理页面</el-menu-item>
+                            <el-menu-item index="adduser">添加用户</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-document"></i>
+                            <span>轮播图管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="swiperList">轮播图列表</el-menu-item>
+                            <el-menu-item index="admin" >首页</el-menu-item>
+                            <el-menu-item index="users">用户管理页面</el-menu-item>
+                            <el-menu-item index="adduser">添加用户</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
                 </el-menu>
             </el-col>
         </div>

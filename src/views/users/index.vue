@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:10px;">
+        <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
             <el-breadcrumb-item :to="{ path: 'admin' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>用户信息</el-breadcrumb-item>
         </el-breadcrumb>
@@ -18,7 +18,9 @@
             </el-table-column>
             <el-table-column label="操作" width="300">
                 <template slot-scope="scope">
-                    <el-button type="primary" @click="detail" size="small">详细信息</el-button>
+                    <router-link :to="{path:'detailInfo',query:{id:scope.row._id}}">
+                        <el-button type="primary" @click="detail(scope.row)" size="small">详细信息</el-button>
+                    </router-link>
                     <el-button type="danger" @click="delet(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
@@ -36,19 +38,26 @@ export default {
             count: 0,
             page: 1,
             size: 5
+            // detailinfo: {
+            //     username: "",
+            //     nickname: "",
+            //     email: "",
+            //     avator: "",
+            //     desc: "",
+            //     createdTime: ""
+            // }
         };
     },
     methods: {
         changePage(page) {
             this.page = page;
             this.getData();
-            console.log(this.count);
         },
         getData() {
             this.$axios
                 .get("/user", { pn: this.page, size: this.size })
                 .then(res => {
-                    console.log(res.data);
+                
                     if (res.code == 200) {
                         this.count = res.count;
                         this.tableData = res.data;
@@ -66,7 +75,6 @@ export default {
                     this.$axios
                         .post("/user/delete", { userIds: id })
                         .then(res => {
-                            console.log(res);
                             this.getData();
                         })
                         .catch(err => {
@@ -85,7 +93,10 @@ export default {
                     });
                 });
         },
-        detail() {}
+        detail(row) {
+            // this.detailinfo = row;
+            this.$store.commit("GET_PERSONINFO", row);
+        }
     },
     created() {
         this.getData();
@@ -95,8 +106,8 @@ export default {
 
 <style>
 .avatar {
-    width: 90px;
-    height: 107px;
+    width: 127px;
+    height: 127px;
 }
 .Pagination {
     width: 400px;

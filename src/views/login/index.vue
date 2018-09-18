@@ -42,8 +42,8 @@ export default {
         };
         return {
             loginMsg: {
-                username: "12345",
-                password: "12345"
+                username: "别删我",
+                password: "11111"
             },
             getMsg: {
                 avatar: "",

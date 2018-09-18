@@ -7,7 +7,10 @@ const components = {
   login: () => import("../views/login"),
   users: () => import("../views/users"),
   adduser: () => import("../views/users/adduser.vue"),
-  changeuser: () => import("../views/users/changeuser")
+  changeuser: () => import("../views/users/changeuser"),
+  detailInfo: () => import("../views/users/detailInfo"),
+  swiperList:()=>import('../views/swiper/list'),
+  detail_swiper:()=>import('../views/swiper/detail_swiper')
 };
 export default new Router({
   mode: "history",
@@ -44,6 +47,28 @@ export default new Router({
             title: "修改个人信息"
           },
           component: components.changeuser
+        },
+        {
+          path: "detailInfo",
+          meta: {
+            title: "详情页"
+          },
+          component: components.detailInfo
+        },
+        {
+          path: "swiperList",
+          name: "轮播图列表",
+          meta:{
+            title:'轮播图列表'
+          },
+          component: components.swiperList
+        },
+        {
+          path: "detail_swiper",
+          meta: {
+            title: "轮播图详情页"
+          },
+          component: components.detail_swiper
         }
       ]
     }
