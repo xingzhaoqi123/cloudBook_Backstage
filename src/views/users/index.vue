@@ -38,14 +38,6 @@ export default {
             count: 0,
             page: 1,
             size: 5
-            // detailinfo: {
-            //     username: "",
-            //     nickname: "",
-            //     email: "",
-            //     avator: "",
-            //     desc: "",
-            //     createdTime: ""
-            // }
         };
     },
     methods: {
@@ -57,7 +49,6 @@ export default {
             this.$axios
                 .get("/user", { pn: this.page, size: this.size })
                 .then(res => {
-                
                     if (res.code == 200) {
                         this.count = res.count;
                         this.tableData = res.data;
@@ -94,7 +85,6 @@ export default {
                 });
         },
         detail(row) {
-            // this.detailinfo = row;
             this.$store.commit("GET_PERSONINFO", row);
         }
     },

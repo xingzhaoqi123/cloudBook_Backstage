@@ -6,8 +6,6 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    swiperinfo:{
-    },
     userinfo: {
       avatar: "",
       nickname: "",
@@ -22,8 +20,7 @@ const store = new Vuex.Store({
       email: "",
       username: "",
       createdTime: ""
-    },
-
+    }
   },
   mutations: {
     CHANGE_USERINFO(state, userinfo) {
@@ -32,9 +29,6 @@ const store = new Vuex.Store({
     GET_PERSONINFO(state, personInfo) {
       state.personInfo = personInfo;
     },
-    GET_SWIPERDETAIL(state,swiperinfo){
-      state.swiperinfo=swiperinfo
-    }
   },
   plugins: [
     createPersistedState({

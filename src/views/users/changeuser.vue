@@ -1,6 +1,6 @@
 <template>
     <div>
-         <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
+        <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
             <el-breadcrumb-item :to="{ path: 'admin' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>修改信息</el-breadcrumb-item>
         </el-breadcrumb>
@@ -61,7 +61,7 @@ export default {
         };
         return {
             labelPosition: "right",
-            imageUrl: "",
+            // imageUrl: "",
             token: {
                 token: ""
             },
@@ -113,7 +113,7 @@ export default {
                 });
         },
         handleAvatarSuccess(res, file) {
-            this.imageUrl = URL.createObjectURL(file.raw);
+            // this.imageUrl = URL.createObjectURL(file.raw);
             this.params.avatar = res.url;
         },
         beforeAvatarUpload(file) {

@@ -10,7 +10,11 @@ const components = {
   changeuser: () => import("../views/users/changeuser"),
   detailInfo: () => import("../views/users/detailInfo"),
   swiperList:()=>import('../views/swiper/list'),
-  detail_swiper:()=>import('../views/swiper/detail_swiper')
+  detail_swiper:()=>import('../views/swiper/detail_swiper'),
+  changeSwiper:()=>import('../views/swiper/changeSwiper'),
+  addswiper:()=>import('../views/swiper/addswiper'),
+  booklist:()=>import('../views/book/booklist'),
+  booktype:()=>import('../views/book/booktype')
 };
 export default new Router({
   mode: "history",
@@ -69,6 +73,33 @@ export default new Router({
             title: "轮播图详情页"
           },
           component: components.detail_swiper
+        },
+        {
+          path:'changeSwiper',
+          meta:{
+            title:'修改轮播图信息'
+          },
+          component:components.changeSwiper
+        },
+        {
+          path:'addswiper',
+          meta:{
+            title:'添加轮播图信息'
+          },
+          component:components.addswiper
+        },{
+          path:'booklist',
+          meta:{
+            title:'图书列表'
+          },
+          component:components.booklist
+        },
+        {
+          path:'booktype',
+          meta:{
+            title:'图书分类'
+          },
+          component:components.booktype
         }
       ]
     }

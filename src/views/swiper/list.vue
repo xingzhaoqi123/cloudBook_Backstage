@@ -12,15 +12,22 @@
             </el-table-column>
             <el-table-column prop="book.createTime" label="创建时间">
             </el-table-column>
+            <el-table-column prop="index" label="排序">
+            </el-table-column>
             <el-table-column label="操作" width="300">
                 <template slot-scope="scope">
                     <router-link :to="{path:'detail_swiper',query:{id:scope.row._id}}">
-                        <el-button type="primary" @click="detail(scope.row.book)" size="small">详细信息</el-button>
+                        <el-button type="primary" @click="detail(scope.row)" size="small">详细信息</el-button>
+                    </router-link>
+                    <router-link :to="{path:'changeSwiper',query:{id:scope.row._id}}">
+                        <el-button type="primary" @click="detail(scope.row)" size="small">修改信息</el-button>
                     </router-link>
                     <el-button type="danger" @click="delet(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
+        <el-pagination class="Pagination" background @current-change='changePage' :page-size='this.size' layout="prev, pager, next" :total="this.count">
+        </el-pagination>
     </div>
 </template>
 
@@ -28,12 +35,19 @@
 export default {
     data() {
         return {
-            list: []
+            list: [],
+            count: 0,
+            page: 1,
+            size: 5
         };
     },
     methods: {
-        detail(book) {
-           this.$store.commit('GET_SWIPERDETAIL',book)
+        changePage(page) {
+            this.page = page;
+            this.getSwiper();
+        },
+        detail(swiper) {
+            this.$store.commit("GET_SWIPERDETAIL", swiper);
         },
         delet(id) {
             console.log(id);
@@ -46,11 +60,11 @@ export default {
                     this.$axios
                         .post("/swiper/delete", { ids: id })
                         .then(res => {
-                            this.getSwiper()
+                            this.getSwiper();
                         })
                         .catch(err => {
                             console.log(err);
-                            this.getSwiper()
+                            this.getSwiper();
                         });
                     this.$message({
                         type: "success",
@@ -65,13 +79,12 @@ export default {
                 });
         },
         getSwiper() {
-            this.$axios.get("/swiper", { pn: 1, size: 20 }).then(res => {
-                this.list = res.data;
-                console.log(res.data);
-            });
-            // .catch(err => {
-            //     console.log(err);
-            // });
+            this.$axios
+                .get("/swiper", { pn: this.page, size: this.size })
+                .then(res => {
+                    this.list = res.data;
+                    this.count = res.count;
+                });
         }
     },
     created() {
@@ -84,5 +97,9 @@ export default {
 .avatar {
     width: 127px;
     height: 127px;
+}
+.Pagination {
+    width: 400px;
+    margin: 30px auto;
 }
 </style>
