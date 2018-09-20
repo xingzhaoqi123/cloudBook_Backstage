@@ -34,10 +34,8 @@
                             <span>图书管理</span>
                         </template>
                         <el-menu-item-group>
-                            <el-menu-item index="booklist">图书列表</el-menu-item>
                             <el-menu-item index="booktype" >图书分类</el-menu-item>
-                            <el-menu-item index="users">用户管理页面</el-menu-item>
-                            <el-menu-item index="adduser">添加用户</el-menu-item>
+                            <el-menu-item index="booktype" >添加分类</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                     <el-submenu index="3">
@@ -48,8 +46,6 @@
                         <el-menu-item-group>
                             <el-menu-item index="swiperList">轮播图列表</el-menu-item>
                             <el-menu-item index="addswiper" >添加轮播图</el-menu-item>
-                            <el-menu-item index="users">用户管理页面</el-menu-item>
-                            <el-menu-item index="adduser">添加用户</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                 </el-menu>

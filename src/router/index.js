@@ -9,12 +9,13 @@ const components = {
   adduser: () => import("../views/users/adduser.vue"),
   changeuser: () => import("../views/users/changeuser"),
   detailInfo: () => import("../views/users/detailInfo"),
-  swiperList:()=>import('../views/swiper/list'),
-  detail_swiper:()=>import('../views/swiper/detail_swiper'),
-  changeSwiper:()=>import('../views/swiper/changeSwiper'),
-  addswiper:()=>import('../views/swiper/addswiper'),
-  booklist:()=>import('../views/book/booklist'),
-  booktype:()=>import('../views/book/booktype')
+  swiperList: () => import("../views/swiper/list"),
+  detail_swiper: () => import("../views/swiper/detail_swiper"),
+  changeSwiper: () => import("../views/swiper/changeSwiper"),
+  addswiper: () => import("../views/swiper/addswiper"),
+  booklist: () => import("../views/book/booklist"),
+  booktype: () => import("../views/book/booktype"),
+  bookinfo: () => import("../views/book/bookinfo")
 };
 export default new Router({
   mode: "history",
@@ -62,8 +63,8 @@ export default new Router({
         {
           path: "swiperList",
           name: "轮播图列表",
-          meta:{
-            title:'轮播图列表'
+          meta: {
+            title: "轮播图列表"
           },
           component: components.swiperList
         },
@@ -75,31 +76,39 @@ export default new Router({
           component: components.detail_swiper
         },
         {
-          path:'changeSwiper',
-          meta:{
-            title:'修改轮播图信息'
+          path: "changeSwiper",
+          meta: {
+            title: "修改轮播图信息"
           },
-          component:components.changeSwiper
+          component: components.changeSwiper
         },
         {
-          path:'addswiper',
-          meta:{
-            title:'添加轮播图信息'
+          path: "addswiper",
+          meta: {
+            title: "添加轮播图信息"
           },
-          component:components.addswiper
-        },{
-          path:'booklist',
-          meta:{
-            title:'图书列表'
-          },
-          component:components.booklist
+          component: components.addswiper
         },
         {
-          path:'booktype',
-          meta:{
-            title:'图书分类'
+          path: "booklist",
+          meta: {
+            title: "图书列表"
           },
-          component:components.booktype
+          component: components.booklist
+        },
+        {
+          path: "booktype",
+          meta: {
+            title: "图书分类"
+          },
+          component: components.booktype
+        },
+        {
+          path: "bookinfo",
+          meta: {
+            title: "书籍信息"
+          },
+          component: components.bookinfo
         }
       ]
     }

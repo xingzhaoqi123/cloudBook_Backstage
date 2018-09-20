@@ -22,7 +22,7 @@
                     <router-link :to="{path:'changeSwiper',query:{id:scope.row._id}}">
                         <el-button type="primary" @click="detail(scope.row)" size="small">修改信息</el-button>
                     </router-link>
-                    <el-button type="danger" @click="delet(scope.row._id)">删除</el-button>
+                    <el-button type="danger" size="small" @click="delet(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>

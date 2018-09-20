@@ -25,7 +25,7 @@
             </el-form-item>
             <el-form-item label="头像">
                 <el-upload class="avatar-uploader" action="https://upload-z1.qiniup.com" :data="this.token" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-                    <img v-if="params.avatar" :src="params.avatar" class="avatar">
+                    <img v-if="params.avatar" :src="params.avatar" class="avatar" @click="show">
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
             </el-form-item>
@@ -97,6 +97,9 @@ export default {
         };
     },
     methods: {
+        show(){
+            console.log(this.token)
+        },
         initParams() {
             this.params = {
                 ...this.$store.state.userinfo

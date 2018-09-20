@@ -47,13 +47,6 @@ const fetch = {
     return new Promise((resolve, reject) => {
       instance[methods](url, data, config)
         .then(res => {
-          if (res.data.code == 401) {
-            this.$notify({
-              title: "警告",
-              message: "登录失效，请重新登录",
-              type: "warning"
-            });
-          }
           resolve(res);
         })
         .catch(err => {
@@ -63,6 +56,9 @@ const fetch = {
   },
   put(url, data, config) {
     return this.axios(url, data, config, "put");
+  },
+  delete(url, data, config) {
+    return this.axios(url, data, config, "delete");
   }
 };
 
