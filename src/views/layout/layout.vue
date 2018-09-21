@@ -35,7 +35,7 @@
                         </template>
                         <el-menu-item-group>
                             <el-menu-item index="booktype" >图书分类</el-menu-item>
-                            <el-menu-item index="booktype" >添加分类</el-menu-item>
+                            <el-menu-item index="addType" >添加分类</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                     <el-submenu index="3">

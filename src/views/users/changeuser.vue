@@ -14,13 +14,13 @@
             <el-form-item label="新密码" prop="new_password">
                 <el-input v-model="params.new_password"></el-input>
             </el-form-item>
-            <el-form-item label="昵称" prop="nickname" :rules="rule_nickname">
+            <el-form-item label="昵称"  :rules="rule_nickname">
                 <el-input v-model="params.nickname"></el-input>
             </el-form-item>
             <el-form-item label="简介">
                 <el-input v-model="params.desc"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱" prop="email" :rules="rules_email">
+            <el-form-item label="邮箱" :rules="rules_email">
                 <el-input v-model="params.email"></el-input>
             </el-form-item>
             <el-form-item label="头像">

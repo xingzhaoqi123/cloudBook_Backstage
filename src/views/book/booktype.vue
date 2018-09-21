@@ -18,8 +18,8 @@
                     <el-button type="primary" size="small" @click="transinfo(scope.row)">修改分类</el-button>
                     <el-dialog title="修改分类" :visible.sync="dialogFormVisible">
                         <el-form :label-position="this.labelPosition" label-width="80px">
-                            <el-form-item label="封面标题" prop='scope.row.title' :label-width="formLabelWidth">
-                                <el-input v-model="changeinfo.title" autocomplete="off"></el-input>
+                            <el-form-item label="封面标题" :label-width="formLabelWidth">
+                                <el-input v-model="changeinfo.title" ></el-input>
                             </el-form-item>
                             <el-form-item label="头像">
                                 <el-upload class="avatar-uploader" action="https://upload-z1.qiniup.com" :data="token" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
@@ -107,13 +107,16 @@ export default {
                 });
         },
         changeType(id) {
+            console.log(this.changeinfo)
             this.$axios
                 .put(`/category/${id}`, this.changeinfo)
                 .then(res => {
-                    if (res.code == 200) {
-                        this.$message.success("修改分类成功");
-                    }
-                    this.getType();
+                    console.log(res)
+                    if (res.data.code == 200) {
+                        this.$message.success(res.data.msg);
+                    }else{
+                        this.$message.error(res.data.msg)}
+                     this.getType();
                     this.dialogFormVisible = false;
                 })
                 .catch(err => {
@@ -163,14 +166,12 @@ export default {
                 .get("/category", { pn: this.page, size: this.size })
                 .then(res => {
                     this.bookType = res.data;
-                    this.count = res.count;
-                   
+                    this.count = res.count;     
                 });
         }
     },
     created() {
         this.getToken();
-        this.changePage();
         this.getType();
     }
 };

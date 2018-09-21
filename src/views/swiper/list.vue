@@ -17,10 +17,10 @@
             <el-table-column label="操作" width="300">
                 <template slot-scope="scope">
                     <router-link :to="{path:'detail_swiper',query:{id:scope.row._id}}">
-                        <el-button type="primary" @click="detail(scope.row)" size="small">详细信息</el-button>
+                        <el-button type="primary" size="small">详细信息</el-button>
                     </router-link>
                     <router-link :to="{path:'changeSwiper',query:{id:scope.row._id}}">
-                        <el-button type="primary" @click="detail(scope.row)" size="small">修改信息</el-button>
+                        <el-button type="primary"  size="small">修改信息</el-button>
                     </router-link>
                     <el-button type="danger" size="small" @click="delet(scope.row._id)">删除</el-button>
                 </template>
@@ -45,9 +45,6 @@ export default {
         changePage(page) {
             this.page = page;
             this.getSwiper();
-        },
-        detail(swiper) {
-            this.$store.commit("GET_SWIPERDETAIL", swiper);
         },
         delet(id) {
             console.log(id);

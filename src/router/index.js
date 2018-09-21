@@ -15,7 +15,8 @@ const components = {
   addswiper: () => import("../views/swiper/addswiper"),
   booklist: () => import("../views/book/booklist"),
   booktype: () => import("../views/book/booktype"),
-  bookinfo: () => import("../views/book/bookinfo")
+  bookinfo: () => import("../views/book/bookinfo"),
+  addType:()=>import('../views/book/addType')
 };
 export default new Router({
   mode: "history",
@@ -109,6 +110,13 @@ export default new Router({
             title: "书籍信息"
           },
           component: components.bookinfo
+        },
+        {
+          path:"addType",
+          meta:{
+            title:'添加分类'
+          },
+          component:components.addType
         }
       ]
     }

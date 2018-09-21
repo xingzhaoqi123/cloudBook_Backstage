@@ -10,7 +10,7 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item v-show="show">
                 <div class="add_book">
                     <div class="add_book_img clearfloat">
                         <img :src="this.addbookdata.img" alt="">
@@ -22,13 +22,16 @@
                 </div>
             </el-form-item>
             <el-form-item label="排序">
-                <el-input-number v-model="number" @change="handleChange" :min="1"></el-input-number>
+                <el-input-number v-model="swiper.index" @change="handleChange" :min="1"></el-input-number>
             </el-form-item>
             <el-form-item label="轮播图图片">
                 <el-upload class="avatar-uploader" action="https://upload-z1.qiniup.com" :data="this.token" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                     <img v-if="swiper.img" :src="swiper.img" class="avatar">
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="addswiper">添加轮播图</el-button>
             </el-form-item>
         </el-form>
         <el-dialog title="书籍信息" :visible.sync="dialogTableVisible">
@@ -55,9 +58,9 @@ import axios from "axios";
 export default {
     data() {
         return {
+            show: false,
             dialogTableVisible: false,
             labelPosition: "right",
-            number: 1,
             token: {
                 token: ""
             },
@@ -81,25 +84,29 @@ export default {
     },
     methods: {
         addbook(bookid) {
-            this.$axios.get(`/book/${bookid}`, { id: bookid }).then(res => {
-                if (res.code == 200) {
-                    this.$message.success("添加成功");
-                    this.addbookdata = res.data;
-                    this.dialogTableVisible=false
-                }else{
-                    this.$message.error('添加失败')
-                }
-                console.log(res);
-            }).catch(err=>{
-                console.log(err)
-            });
+            this.swiper.book = bookid;
+            this.$axios.get(`/book/${bookid}`, { id: bookid })
+                .then(res => {
+                    if (res.code == 200) {
+                        this.$message.success("添加成功");
+                        this.addbookdata = res.data;
+                        this.dialogTableVisible = false;
+                        this.show = true;
+                    } else {
+                        this.$message.error("添加失败");
+                    }
+                    // console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         },
         async getbookData() {
             const { data, count } = await this.$axios.get(
                 `/category/${this.swiper.typeId}/books`
             );
             (this.bookData = data.books), (this.bookcount = count);
-            console.log(this.bookData);
+            // console.log(this.bookData);
         },
         typechange() {
             this.getbookData();
@@ -109,7 +116,7 @@ export default {
             this.$axios.get("/category").then(res => {
                 this.bookType = res.data;
                 // this.count = res.count;
-                console.log(res.data);
+                // console.log(res.data);
             });
         },
         handleChange(value) {
@@ -142,10 +149,11 @@ export default {
                 });
         },
         addswiper() {
+            // console.log(this.swiper);
             this.$axios
                 .post("/swiper", this.swiper)
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
                     if (res.code == 200) {
                         this.$message.success("添加成功");
                         this.$router.push("swiperList");
@@ -198,12 +206,11 @@ export default {
         img {
             width: 140px;
             height: 167px;
-            border:1px solid #C6979D;
+            border: 1px solid #c6979d;
             border-radius: 6px;
         }
         margin: 20px;
         float: left;
-        
     }
     .clearfloat:after {
         content: "";
@@ -219,7 +226,7 @@ export default {
         margin: 20px;
     }
 }
-.book_title{
-    font-weight: 700
+.book_title {
+    font-weight: 700;
 }
 </style>
