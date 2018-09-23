@@ -20,7 +20,7 @@
                 <el-input v-model="bookinfo.createTime" disabled></el-input>
             </el-form-item>
             <el-form-item label="简介">
-                <el-input v-model="bookinfo.desc" rows="8" type="textarea" disabled></el-input>
+                <el-input v-model="bookinfo.desc" rows="5" type="textarea" disabled></el-input>
             </el-form-item>
         </el-form>
     </div>
